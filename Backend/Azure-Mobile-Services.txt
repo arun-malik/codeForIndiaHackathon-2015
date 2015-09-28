@@ -1,0 +1,90 @@
+- Used Azure Mobile Services for Backend.
+- Connected it with Twilio (to send SMS & Calls) and SnapGrid (to send Email)
+
+
+Java Script to Connect Twilio & Snap Grid:
+
+var SendGrid = require('sendgrid').SendGrid;
+
+function update(item, user, request) {
+
+request.execute();
+request.respond();
+sendEmail(item);
+sendSMS(item);
+//callUser(item);
+
+function sendEmail(item) {
+        var sendgrid = new SendGrid('<Snapgrid User account>', '<password>');       
+
+        sendgrid.send({
+            to: item.emergencyemail,
+            from : '<fromEmail>',
+            subject: 'Emergency Notification for ' + item.name,
+            text: 'A new emergency was reported by : ' + item.name + ', last located at ' + item.sensorlocation
+        }, function(success, message) {
+            // If the email failed to send, log it as an error so we can investigate
+            if (!success) {
+                console.error(message);
+            }
+        });
+    }
+    
+//  function sendPush(item){
+//        // If the insert succeeds, send a notification.
+//        push.wns.send(null, payload, 'wns/toast', {
+//            success: function(pushResponse) {
+//                console.log("Sent push:", pushResponse);
+//                request.respond();
+//                },              
+//                error: function (pushResponse) {
+//                    console.log("Error Sending push:", pushResponse);
+//                    request.respond(500, { error: pushResponse });
+//                    }
+//                });
+//  }
+
+function sendSMS(item){
+// Twilio Credentials 
+var accountSid = '<account SID>'; 
+var authToken = '<Auth Token>'
+ var from = <from Mobile number>
+ var to = '+1'+item.emergencymobile
+ var message = 'A new emergency was reported by : ' + item.name + ', last located at ' + item.sensorlocation
+
+var httpRequest = require('request');
+   
+    // Create the request body
+    var body = "From=" + from + "&To=" + to + "&Body=" + message;
+ 
+    // Make the HTTP request to Twilio
+    httpRequest.post({
+        url: "https://" + accountSid + ":" + authToken +
+             "@api.twilio.com/2010-04-01/Accounts/" + accountSid + "/SMS/Messages.json",
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        body: body
+    }, function (err, resp, body) {
+        console.log(body);
+    });
+}
+
+
+//
+//function callUser(item){
+// 
+// httpRequest.get({
+//        url: "https://" + accountSid + ":" + authToken +
+//             "@api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Calls/",
+//        headers: { 'content-type': 'application/x-www-form-urlencoded',to: tomobile
+//	from: frommobile,
+//	applicationSid: <account SID>
+//	method: "POST",  
+//	fallbackMethod: "POST",  
+//	statusCallbackMethod: "POST",  
+//	ifMachine: "Hangup",  
+//	record: "false"  }
+//    }, function (err, resp, body) {
+//        console.log(body);
+//    });
+//}
+}
