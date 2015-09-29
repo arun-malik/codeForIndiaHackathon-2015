@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.cfi.codeforindia.EmergencyContact">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/contactNameText"
+                android:text="Arun Malik"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="Emergency Contact Name" />
+
+            <EditText
+                android:id="@+id/contactEmailText"
+                android:text="malik.mgm@gmail.com"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="Emergency Contact Email" />
+
+            <EditText
+                android:id="@+id/contactPhoneText"
+                android:text="408-834-6060"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="Emergency Contact Phone"/>
+
+        <android.widget.Button
+            android:id="@+id/EmergencyUpdateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="updateEmergencyContactButton"
+            android:text="Emergency Contact update"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

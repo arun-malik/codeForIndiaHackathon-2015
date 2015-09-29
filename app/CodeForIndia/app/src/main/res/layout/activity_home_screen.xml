@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+    <android.widget.Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:text="Help"
+        android:onClick="helpButton"
+        android:layout_weight="0.27" />
+
+        <android.widget.Button
+            android:id="@+id/EmergencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="68dp"
+            android:text="Emergency Contact"
+            android:onClick="emergencyButton"
+            android:layout_weight="0.27" />
+    </LinearLayout>
+</LinearLayout>
+
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:id="@+id/map" tools:context=".HomeScreen"
+    android:name="com.google.android.gms.maps.SupportMapFragment" />-->
